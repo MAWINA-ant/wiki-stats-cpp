@@ -11,12 +11,19 @@ int main(int argc, char* argv[]){
         return -1;
     }
 
-    WikiGraph wg;    
+    WikiGraph wg;
     std::ifstream file(argv[1]);
     if (file){
         std::cout << utf16_to_utf8(L"Загружаю граф из файла: ") << argv[1] << std::endl;;
         wg.load_from_stream(file);
-		file.close();
+        file.close();
+
+        // exercise 3
+        // *
+
+        // *
+        std::cout << utf16_to_utf8(L"Количество статей с перенаправлением: ");
+        // *
     }
     else
     {

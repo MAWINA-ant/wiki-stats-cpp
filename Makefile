@@ -3,6 +3,9 @@ param=-c -std=c++11
 
 all: app
 
+clean:
+	rm -rf wiki *.o
+
 app: wiki_stats.o wiki_graph.o utf8.o
 	$(cc) -o wiki wiki_stats.o wiki_graph.o utf8.o
 

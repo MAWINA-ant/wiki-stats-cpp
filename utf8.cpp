@@ -16,9 +16,9 @@ std::wstring utf8_to_utf16 (std::string str){
         while (first_byte & 0x80){      // пока не удалим все начальные единицы в 'first_byte'
             addition_byte = str[++i];   // Считываем очередной байт кодировки
             
-// Изменяем последний символ строки с результатом
+            // Изменяем последний символ строки с результатом
             int last = result.length()-1;
-// затираем первую единицу и дописывем 6 последних бит дополнительного байта
+            // затираем первую единицу и дописывем 6 последних бит дополнительного байта
             result[last] = ((result[last] & cl_int) << 6 ) | (addition_byte & 0x3F);
 
             cl_int = (cl_int << 7) | 0xFF;
@@ -31,7 +31,7 @@ std::wstring utf8_to_utf16 (std::string str){
 
 std::string utf16_to_utf8 (std::wstring str){
     
-    std::string result = ""; // начальное 
+    std::string result = ""; // начальное
     for (int i=0; i < str.length(); ++i){   // Проходим по всем символам
         uint16_t curr_char = str[i];
         if (curr_char < 0x80){              // для кодирования в utf8 нуен один байт
