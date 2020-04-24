@@ -42,16 +42,16 @@ void  WikiGraph::load_from_stream(std::istream &file) {
     std::cout << utf16_to_utf8(L"Граф загружен") << std::endl;
 }
 
-int32_t  WikiGraph::get_number_of_links_from(const int32_t &id) {
+int32_t  WikiGraph::get_number_of_links_from(const int32_t &id) const {
     return offset[id] - offset[id-1];
 }
 
-int32_t*  WikiGraph::get_links_from(const int32_t &id) {
-    return links+id;
+int32_t*  WikiGraph::get_links_from(const int32_t &id) const {
+    return links+offset[id-1];
 }
 
-int32_t  WikiGraph::get_id(const std::string &title) {
-    index = 0;
+int32_t  WikiGraph::get_id(const std::string &title) const {
+    int32_t index = 0;
     while (index < n_pages) {
         if (titles[index] == title) {
             return index;
@@ -61,18 +61,18 @@ int32_t  WikiGraph::get_id(const std::string &title) {
     return -1;
 }
 
-int32_t  WikiGraph::get_number_of_pages() {
+int32_t  WikiGraph::get_number_of_pages() const {
     return n_pages;
 }
 
-bool  WikiGraph::is_redirect(const int32_t &id) {
+bool  WikiGraph::is_redirect(const int32_t &id) const {
     return redirect[id-1];
 }
 
-std::string  WikiGraph::get_title(const int32_t &id) {
+std::string  WikiGraph::get_title(const int32_t &id) const {
     return titles[id-1];
 }
 
-int32_t  WikiGraph::get_page_size(const int32_t &id) {
+int32_t  WikiGraph::get_page_size(const int32_t &id) const {
     return sizes[id-1];
 }
